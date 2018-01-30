@@ -1,0 +1,62 @@
+
+Sub VBAHomework()
+
+
+    For Each ws In Worksheets
+
+        '  Determine the Last Row
+           LastRow = ws.Cells(Rows.Count, 1).End(xlUp).Row
+        
+        ' Determine the Last Column Number
+          LastRow = ws.Cells(1, Columns.Count).End(xlToDown).Row
+        
+   ' To calculate the yearly change
+   
+         Dim i As Long
+         
+        Dim total As Long
+        
+        
+         For i = 2 To LastRow
+         
+            
+             Cells(i, 10).Value = Cells(i, 6).Value - Cells(i, 3).Value
+        
+        'To calculate percent change from what it opened the year at to what it closed.
+             
+             Cells(i, 11).Value = Cells(i, 6).Value / Cells(i, 3).Value * 100
+             
+        'To calculate total volume of stock ???
+            Cells(i, 12).Value = Cells(i, 7).Value + Cells(i, 7 - 1).Value * 100
+         
+         'Ticker Symbol
+            'I do not know where to get the ticker symbol
+            If Cells(i + 1, Column).Value <> Cells(i, Column).Value Then
+            
+            Else
+            
+                total = total + Cells(i, Column).Value
+            
+            End If
+         
+         
+            'Setting Color conditions
+            'Highlight green
+            If Cells(i, 10).Value > 0 Then
+            
+            Cells(i, 10).Interior.ColorIndex = 4
+            
+            'Highlight red
+            Else
+               Cells(i, 10).Interior.ColorIndex = 3
+               
+            End If
+     
+        Next i
+     
+     Next ws
+     
+     
+End Sub
+
+
